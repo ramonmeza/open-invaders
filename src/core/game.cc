@@ -6,6 +6,8 @@
 
 #include "core/game.h"
 
+float core::Game::DeltaTime = 0.0f;
+
 struct core::Game::GameImpl {
     GameImpl() :
         window_(sf::VideoMode(800, 600), "Open Invaders") {
