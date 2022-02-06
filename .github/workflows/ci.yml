@@ -21,6 +21,9 @@ jobs:
           sudo apt-get update
           sudo apt-get install libsfml-dev
 
+      - name: Create build directory
+        run: mkdir ${{github.workspace}}/build
+
       - name: Build with CMake
         run: cmake --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}}
 
