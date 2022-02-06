@@ -22,7 +22,7 @@ jobs:
           sudo apt-get install libsfml-dev
 
       - name: Configure CMake
-        run: cmake --configure ${{github.workspace}}
+        run: cmake -DCMAKE_BUILD_TYPE:STRING=${{env.BUILD_TYPE}} -H${{github.workspace}} -B${{github.workspace}}/build -G "Unix Makefiles"
 
       - name: Build with CMake
         run: cmake --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}}
