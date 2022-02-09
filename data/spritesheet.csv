@@ -1,0 +1,16 @@
+Name,Offset X,Offset Y,Width,Height
+Tank,277,228,26,16
+Alien1_1,7,225,16,16
+Alien1_2,40,225,16,16
+Alien2_1,74,225,22,16
+Alien2_2,107,225,22,16
+Alien3_1,147,226,24,16
+Alien3_2,179,226,24,16
+UFO,215,224,48,21
+Barrier_1,316,213,44,32
+Barrier_2,480,210,44,32
+Barrier_3,480,265,44,32
+Barrier_4,428,210,44,32
+Barrier_5,373,211,44,32
+Explosion,437,276,26,16
+Bullet,408,353,4,18
