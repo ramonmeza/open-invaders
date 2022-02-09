@@ -35,7 +35,7 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
 
 add_executable(open-invaders ${SOURCE_FILES})
 
-target_link_libraries(open-invaders ${THOR_LIBRARY} ${SFGUI_LIBRARY} ${SFML_LIBRARIES} ${SFML_DEPENDENCIES})
+target_link_libraries(open-invaders ${SFML_LIBRARIES} ${SFML_DEPENDENCIES})
 
 # Install executable
 install(TARGETS  open-invaders
