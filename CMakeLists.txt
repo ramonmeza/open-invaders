@@ -1,21 +1,23 @@
 cmake_minimum_required(VERSION 3.12)
-project(open-invaders)
+project(open_invaders VERSION 0.1)
 
+# set compiler options
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS}")
 
-# Set default build type explicitly to Release
-if (NOT CMAKE_BUILD_TYPE)
-  set (CMAKE_BUILD_TYPE "Release" CACHE STRING "Choose the type of build type." FORCE)
-endif (NOT CMAKE_BUILD_TYPE)
-
+# setup cmake
 set(CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake/)
 
+# set default build type to debug
+if (NOT CMAKE_BUILD_TYPE)
+  set (CMAKE_BUILD_TYPE "Debug" CACHE STRING "Choose the type of build type." FORCE)
+endif (NOT CMAKE_BUILD_TYPE)
+
+# Find SFML
 if(NOT SFML_ROOT)
   set(SFML_ROOT CACHE "" FORCE)
 endif()
 
-# Find SFML
 set(SFML_STATIC_LIBRARIES FALSE)
 find_package(SFML REQUIRED COMPONENTS audio graphics window system)
 
@@ -23,26 +25,37 @@ if(NOT SFML_FOUND)
   message(FATAL_ERROR "SFML couldn't be located!")
 endif()
 
-include_directories(${SFML_INCLUDE_DIR})
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/src)
+# set directory variables
+set(GAME_SRC ${CMAKE_CURRENT_SOURCE_DIR}/src)
+set(GAME_INCLUDES ${CMAKE_CURRENT_SOURCE_DIR}/include)
 
+# add config file
+configure_file(${GAME_INCLUDES}/config/config.h.in ${GAME_INCLUDES}/config/config.h)
+
+# include directories
+include_directories(${SFML_INCLUDE_DIR})
+include_directories(${GAME_SRC})
+include_directories(${GAME_INCLUDES})
+
+# list of files needed to compile
 set(SOURCE_FILES
   src/main.cc
   src/core/game.cc
 )
 
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
+# create the executable
+add_executable(open_invaders ${SOURCE_FILES})
 
-add_executable(open-invaders ${SOURCE_FILES})
-
-target_link_libraries(open-invaders ${SFML_LIBRARIES} ${SFML_DEPENDENCIES})
+# link
+target_include_directories(open_invaders PUBLIC "${PROJECT_BINARY_DIR}")
+target_link_libraries(open_invaders ${SFML_LIBRARIES} ${SFML_DEPENDENCIES})
 
 # Install executable
-install(TARGETS  open-invaders
+install(TARGETS  open_invaders
   RUNTIME DESTINATION .
 )
 
 # Install game data
-install(DIRECTORY bin/res
+install(DIRECTORY data
   DESTINATION .
 )

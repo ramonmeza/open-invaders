@@ -1,2 +1,5 @@
 # directory where build files will be
 build/
+
+# cmake generated file
+include/config/config.h
