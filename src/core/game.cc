@@ -4,20 +4,31 @@
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <SFML/Window/Event.hpp>
 
+#include "config/config.h"
 #include "core/game.h"
 
+// initialize static vars
 float core::Game::DeltaTime = 0.0f;
 
+// implementation struct
 struct core::Game::GameImpl {
-    GameImpl() :
-        window_(sf::VideoMode(800, 600), "Open Invaders") {
+    GameImpl() {
     }
 
     ~GameImpl() {
     }
 
     void Init() {
-    }
+        if (window_.isOpen()) {
+            window_.close();
+        }
+
+        window_.create(
+            sf::VideoMode(800, 600),
+            "Open Invaders v" + 
+            std::to_string(open_invaders_VERSION_MAJOR) + "." + 
+            std::to_string(open_invaders_VERSION_MINOR));
+     }
 
     void Run() {
         while (window_.isOpen()) {
@@ -53,13 +64,15 @@ struct core::Game::GameImpl {
     sf::Clock delta_clock_;
 };
 
-// default constructors
+// default constructor
 core::Game::Game() :
-    impl_(new GameImpl) {
+    impl_(std::make_unique<GameImpl>()) {
 }
 
+// delete destructor
 core::Game::~Game() = default;
 
+// implement pimpl interface methods
 void core::Game::Init() {
     impl_->Init();
 }

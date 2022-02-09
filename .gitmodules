@@ -1,0 +1,3 @@
+[submodule "third-party/LeksysINI"]
+	path = third-party/LeksysINI
+	url = https://github.com/Lek-sys/LeksysINI.git
