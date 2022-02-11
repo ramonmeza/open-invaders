@@ -1,24 +1,26 @@
 // Copyright 2022 open-invaders
 // Author: Ramon Meza
 
+#include <iniparser.hpp>
+
 #include "config/config.h"
 #include "core/settings.h"
 
 // implementation struct
-struct core::Settings::SettingsImpl {
-    SettingsImpl() {
+struct core::Settings::Impl {
+    Impl() {
     }
 
-    ~SettingsImpl() {
+    ~Impl() {
     }
 
-   void SettingsImpl::Init() {
+   void Impl::Init() {
    }
 };
 
 // default constructor
 core::Settings::Settings() :
-    impl_(std::make_unique<SettingsImpl>()) {
+    impl_(std::make_unique<Impl>()) {
 }
 
 // delete destructor

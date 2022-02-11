@@ -16,8 +16,8 @@ class Settings {
    void Settings::Init();
 
  private:
-    class SettingsImpl;
-    std::unique_ptr<SettingsImpl> impl_;
+    class Impl;
+    std::unique_ptr<Impl> impl_;
 };
 
 }  // namespace core

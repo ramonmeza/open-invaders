@@ -11,11 +11,11 @@
 float core::Game::DeltaTime = 0.0f;
 
 // implementation struct
-struct core::Game::GameImpl {
-    GameImpl() {
+struct core::Game::Impl {
+    Impl() {
     }
 
-    ~GameImpl() {
+    ~Impl() {
     }
 
     void Init() {
@@ -66,7 +66,7 @@ struct core::Game::GameImpl {
 
 // default constructor
 core::Game::Game() :
-    impl_(std::make_unique<GameImpl>()) {
+    impl_(std::make_unique<core::Game::Impl>()) {
 }
 
 // delete destructor

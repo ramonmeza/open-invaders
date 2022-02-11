@@ -1,8 +1,8 @@
 // Copyright 2022 open-invaders
 // Author: Ramon Meza
 
-#ifndef CORE_GAME_H_
-#define CORE_GAME_H_
+#ifndef core_Game_H_
+#define core_Game_H_
 
 #include <memory>
 
@@ -20,10 +20,10 @@ class Game {
     static float DeltaTime;
 
  private:
-    class GameImpl;
-    std::unique_ptr<GameImpl> impl_;
+    class Impl;
+    std::unique_ptr<Impl> impl_;
 };
 
 }  // namespace core
 
-#endif  // CORE_GAME_H_
+#endif  // core_Game_H_
