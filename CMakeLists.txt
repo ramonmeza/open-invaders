@@ -63,5 +63,5 @@ install(TARGETS  open_invaders
 
 # install game data
 install(DIRECTORY data
-  DESTINATION .
+  DESTINATION data
 )

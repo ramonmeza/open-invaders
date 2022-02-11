@@ -13,7 +13,9 @@ class Settings {
     Settings();
     ~Settings();
 
-   void Settings::Init();
+   void Load(const std::string& path);
+
+   INI::Section* operator[](const std::string& section);
 
  private:
     class Impl;

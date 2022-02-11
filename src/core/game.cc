@@ -4,8 +4,13 @@
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <SFML/Window/Event.hpp>
 
+#include <iniparser.hpp>
+
 #include "config/config.h"
 #include "core/game.h"
+#include "core/settings.h"
+
+#define SETTINGS_PATH "data/settings.ini"
 
 // initialize static vars
 float core::Game::DeltaTime = 0.0f;
@@ -19,16 +24,27 @@ struct core::Game::Impl {
     }
 
     void Init() {
+        InitSettings();
+        InitWindow();
+    }
+
+    void InitSettings() {
+        settings_.Load(SETTINGS_PATH);
+    }
+
+    void InitWindow() {
         if (window_.isOpen()) {
             window_.close();
         }
 
         window_.create(
-            sf::VideoMode(800, 600),
+            sf::VideoMode(
+                settings_["Display"]->GetValue("width", 800).AsInt(),
+                settings_["Display"]->GetValue("height", 600).AsInt()),
             "Open Invaders v" + 
             std::to_string(open_invaders_VERSION_MAJOR) + "." + 
             std::to_string(open_invaders_VERSION_MINOR));
-     }
+    }
 
     void Run() {
         while (window_.isOpen()) {
@@ -59,6 +75,7 @@ struct core::Game::Impl {
         window_.display();
     }
 
+    core::Settings settings_;
     sf::RenderWindow window_;
     sf::Event window_event_;
     sf::Clock delta_clock_;
