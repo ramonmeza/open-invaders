@@ -4,7 +4,7 @@
 #include <filesystem>
 #include <memory>
 
-#include <iniparser.hpp>
+#include <LeksysINI/iniparser.hpp>
 
 #include "config/config.h"
 #include "core/settings.h"

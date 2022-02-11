@@ -29,7 +29,6 @@ endif()
 set(GAME_SRC ${CMAKE_CURRENT_SOURCE_DIR}/src)
 set(GAME_INCLUDES ${CMAKE_CURRENT_SOURCE_DIR}/include)
 set(THIRD_PARTY_DIR ${CMAKE_CURRENT_SOURCE_DIR}/third_party)
-set(LEKSYS_INI_DIR ${THIRD_PARTY_DIR}/LeksysINI)
 
 # add config file
 configure_file(${GAME_INCLUDES}/config/config.h.in ${GAME_INCLUDES}/config/config.h)
@@ -39,7 +38,7 @@ include_directories(${GAME_SRC})
 include_directories(${GAME_INCLUDES})
 
 include_directories(${SFML_INCLUDE_DIR})
-include_directories(${LEKSYS_INI_DIR})
+include_directories(${THIRD_PARTY_DIR})
 
 # list of files needed to compile
 set(SOURCE_FILES

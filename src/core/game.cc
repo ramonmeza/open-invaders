@@ -4,7 +4,7 @@
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <SFML/Window/Event.hpp>
 
-#include <iniparser.hpp>
+#include <LeksysINI/iniparser.hpp>
 
 #include "config/config.h"
 #include "core/game.h"
