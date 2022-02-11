@@ -1,16 +1,17 @@
 // Copyright 2022 open-invaders
 // Author: Ramon Meza
 
-#include <SFML/Graphics/RenderWindow.hpp>
-#include <SFML/Window/Event.hpp>
+#include <filesystem>
 
 #include <LeksysINI/iniparser.hpp>
+#include <SFML/Graphics/RenderWindow.hpp>
+#include <SFML/Window/Event.hpp>
 
 #include "config/config.h"
 #include "core/game.h"
 #include "core/settings.h"
 
-#define SETTINGS_PATH "data/settings.ini"
+#define SETTINGS_FILE "settings.ini"
 
 // initialize static vars
 float core::Game::DeltaTime = 0.0f;
@@ -29,7 +30,9 @@ struct core::Game::Impl {
     }
 
     void InitSettings() {
-        settings_.Load(SETTINGS_PATH);
+        std::filesystem::path data_dir(DATA_DIR);
+        std::filesystem::path settings_file(SETTINGS_FILE);
+        settings_.Load(data_dir / settings_file);
     }
 
     void InitWindow() {

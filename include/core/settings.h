@@ -13,7 +13,7 @@ class Settings {
     Settings();
     ~Settings();
 
-   void Load(const std::string& path);
+   void Load(const std::filesystem::path& path);
 
    INI::Section* operator[](const std::string& section);
 

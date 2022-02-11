@@ -17,7 +17,7 @@ struct core::Settings::Impl {
     ~Impl() {
     }
 
-    void Load(const std::string& path) {
+    void Load(const std::filesystem::path& path) {
         if(!file_.Load(path))
         {
             throw;
@@ -40,7 +40,7 @@ core::Settings::Settings() :
 core::Settings::~Settings() = default;
 
 // implement pimpl interface methods
-void core::Settings::Load(const std::string& path) {
+void core::Settings::Load(const std::filesystem::path& path) {
     impl_->Load(path);
 }
 
