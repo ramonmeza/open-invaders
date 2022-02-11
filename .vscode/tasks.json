@@ -2,7 +2,55 @@
     // See https://go.microsoft.com/fwlink/?LinkId=733558
     // for the documentation about the tasks.json format
     "version": "2.0.0",
+    "options": {
+        "env": {
+            "TEMPLATE_APP": "third_party/template_populator/template.py",
+            "PIMPL_HEADER_TEMPLATE": "templates/pimpl_header.template",
+            "PIMPL_SOURCE_TEMPLATE": "templates/pimpl_source.template",
+            "PIMPL_NAMESPACE_REPLACE": "core",
+            "PIMPL_CLASS_NAME_REPLACE": "Player",
+            "TEMPLATE_HEADER_OUTPUT": "include/core/player.h",
+            "TEMPLATE_SOURCE_OUTPUT": "src/core/player.cc"
+        }
+    },
     "tasks": [
+        {
+            "label": "Create PIMPL Class",
+            "type": "shell",
+            "command": "echo",
+            "args": [
+                "PIMPL class created!"
+            ],
+            "dependsOrder": "sequence",
+            "dependsOn":[
+                "Create PIMPL Header",
+                "Create PIMPL Source"
+            ]
+        },
+        {
+            "label": "Create PIMPL Header",
+            "type": "shell",
+            "command": "python3",
+            "args": [
+                "$TEMPLATE_APP",
+                "-t", "$PIMPL_HEADER_TEMPLATE",
+                "-r", "${Namespace}:$PIMPL_NAMESPACE_REPLACE",
+                "-r", "${ClassName}:$PIMPL_CLASS_NAME_REPLACE",
+                "-o", "$TEMPLATE_HEADER_OUTPUT"
+            ]
+        },
+        {
+            "label": "Create PIMPL Source",
+            "type": "shell",
+            "command": "python3",
+            "args": [
+                "$TEMPLATE_APP",
+                "-t", "$PIMPL_SOURCE_TEMPLATE",
+                "-r", "${Namespace}:$PIMPL_NAMESPACE_REPLACE",
+                "-r", "${ClassName}:$PIMPL_CLASS_NAME_REPLACE",
+                "-o", "$TEMPLATE_SOURCE_OUTPUT"
+            ]
+        },
         {
             "label": "Create build directory",
             "type": "shell",
@@ -34,46 +82,6 @@
                 "CMake: Generate build"
             ],
             "command": "/usr/bin/cmake --build ${workspaceFolder}/build --config Debug --target all -j 18"
-        },
-        {
-            "label": "Create Template C++ Pimpl Header",
-            "type": "shell",
-            "options": {
-                "cwd": "${workspaceFolder}"
-            },
-            "command": "python3",
-            "args": [
-                "${workspaceFolder}/third_party/template_populator/src/template.py",
-                "-t",
-                "${workspaceFolder}/templates/pimpl_header.template",
-                "-r",
-                "\\${Namespace\\}:core",
-                "-r",
-                "\\${ClassName\\}:Settings",
-                "-o",
-                "${workspaceFolder}/include/core/settings.h"
-            ],
-            "problemMatcher": []
-        },
-        {
-            "label": "Create Template C++ Pimpl Source",
-            "type": "shell",
-            "options": {
-                "cwd": "${workspaceFolder}"
-            },
-            "command": "python3",
-            "args": [
-                "${workspaceFolder}/third_party/template_populator/src/template.py",
-                "-t",
-                "${workspaceFolder}/templates/pimpl_source.template",
-                "-r",
-                "\\${Namespace\\}:core",
-                "-r",
-                "\\${ClassName\\}:Settings",
-                "-o",
-                "${workspaceFolder}/src/core/settings.h"
-            ],
-            "problemMatcher": []
         }
     ]
 }
