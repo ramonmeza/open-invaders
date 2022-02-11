@@ -4,7 +4,7 @@
     "version": "2.0.0",
     "options": {
         "env": {
-            "TEMPLATE_APP": "third_party/template_populator/template.py",
+            "TEMPLATE_APP": "third_party/template_populator/src/template.py",
             "PIMPL_HEADER_TEMPLATE": "templates/pimpl_header.template",
             "PIMPL_SOURCE_TEMPLATE": "templates/pimpl_source.template",
             "PIMPL_NAMESPACE_REPLACE": "core",
