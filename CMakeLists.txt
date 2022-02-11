@@ -48,7 +48,6 @@ set(SOURCE_FILES
   src/core/settings.cc
 )
 
-
 # create the executable
 add_executable(open_invaders ${SOURCE_FILES})
 
