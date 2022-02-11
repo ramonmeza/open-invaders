@@ -1,0 +1,29 @@
+// Copyright 2022 open-invaders
+// Author: Ramon Meza
+
+#include "config/config.h"
+
+// implementation struct
+struct ${Namespace}::${ClassName}::${ClassName}Impl {
+    ${ClassName}Impl() {
+    }
+
+    ~${ClassName}Impl() {
+    }
+
+   void ${ClassName}Impl::Init() {
+   }
+};
+
+// default constructor
+${Namespace}::${ClassName}::${ClassName}() :
+    impl_(std::make_unique<${ClassName}Impl>()) {
+}
+
+// delete destructor
+${Namespace}::${ClassName}::~${ClassName}() = default;
+
+// implement pimpl interface methods
+void ${Namespace}::${ClassName}::Init() {
+    impl_->Init();
+}

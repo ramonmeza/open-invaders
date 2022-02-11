@@ -18,7 +18,7 @@
                 "cwd": "${workspaceFolder}"
             },
             "dependsOrder": "sequence",
-            "dependsOn":[
+            "dependsOn": [
                 "Create build directory"
             ],
             "command": "/usr/bin/cmake --no-warn-unused-cli -DCMAKE_EXPORT_COMPILE_COMMANDS:BOOL=TRUE -DCMAKE_BUILD_TYPE:STRING=Debug -DCMAKE_C_COMPILER:FILEPATH=/bin/x86_64-linux-gnu-gcc-9 -DCMAKE_CXX_COMPILER:FILEPATH=/bin/x86_64-linux-gnu-g++-9 -H${workspaceFolder} -B${workspaceFolder}/build -G \"Unix Makefiles\""
@@ -34,6 +34,46 @@
                 "CMake: Generate build"
             ],
             "command": "/usr/bin/cmake --build ${workspaceFolder}/build --config Debug --target all -j 18"
+        },
+        {
+            "label": "Create Template C++ Pimpl Header",
+            "type": "shell",
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "command": "python3",
+            "args": [
+                "${workspaceFolder}/third_party/template_populator/src/template.py",
+                "-t",
+                "${workspaceFolder}/templates/pimpl_header.template",
+                "-r",
+                "\\${Namespace\\}:core",
+                "-r",
+                "\\${ClassName\\}:Settings",
+                "-o",
+                "${workspaceFolder}/include/core/settings.h"
+            ],
+            "problemMatcher": []
+        },
+        {
+            "label": "Create Template C++ Pimpl Source",
+            "type": "shell",
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "command": "python3",
+            "args": [
+                "${workspaceFolder}/third_party/template_populator/src/template.py",
+                "-t",
+                "${workspaceFolder}/templates/pimpl_source.template",
+                "-r",
+                "\\${Namespace\\}:core",
+                "-r",
+                "\\${ClassName\\}:Settings",
+                "-o",
+                "${workspaceFolder}/src/core/settings.h"
+            ],
+            "problemMatcher": []
         }
     ]
 }
