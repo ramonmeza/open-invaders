@@ -1,3 +1,6 @@
-[submodule "third-party/LeksysINI"]
-	path = third-party/LeksysINI
+[submodule "third_party/LeksysINI"]
+	path = third_party/LeksysINI
 	url = https://github.com/Lek-sys/LeksysINI.git
+[submodule "third_party/template_populator"]
+	path = third_party/template_populator
+	url = git@github.com:ramonmeza/template_populator.git

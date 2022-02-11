@@ -1,6 +1,3 @@
-# directory where submodules and third party libraries exist
-third-party
-
 # directory where build files are generated
 build
 

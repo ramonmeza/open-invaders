@@ -28,7 +28,7 @@ endif()
 # set directory variables
 set(GAME_SRC ${CMAKE_CURRENT_SOURCE_DIR}/src)
 set(GAME_INCLUDES ${CMAKE_CURRENT_SOURCE_DIR}/include)
-set(THIRD_PARTY_DIR ${CMAKE_CURRENT_SOURCE_DIR}/third-party)
+set(THIRD_PARTY_DIR ${CMAKE_CURRENT_SOURCE_DIR}/third_party)
 set(LEKSYS_INI_DIR ${THIRD_PARTY_DIR}/LeksysINI)
 
 # add config file
