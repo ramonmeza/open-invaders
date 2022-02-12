@@ -18,7 +18,9 @@ jobs:
 
       - name: Initialize repository
         working-directory: ${{github.workspace}}
-        run: make init
+        run: |
+          ls
+          make init
 
       - name: Install SFML
         run: |
