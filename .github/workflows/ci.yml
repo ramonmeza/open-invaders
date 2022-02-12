@@ -16,6 +16,9 @@ jobs:
       - name: Check out repository  code
         uses: actions/checkout@v2
 
+      - name: Initialize repository
+        run: make init
+
       - name: Install SFML
         run: |
           sudo apt-get update
