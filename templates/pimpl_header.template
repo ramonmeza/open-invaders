@@ -1,12 +1,12 @@
 // Copyright 2022 open-invaders
 // Author: Ramon Meza
 
-#ifndef ${Namespace}_${ClassName}_H_
-#define ${Namespace}_${ClassName}_H_
+#ifndef ${Namespace:upper}_${ClassName:upper}_H_
+#define ${Namespace:upper}_${ClassName:upper}_H_
 
 #include <memory>
 
-namespace ${Namespace} {
+namespace ${Namespace:lower} {
 
 class ${ClassName} {
  public:
@@ -20,6 +20,6 @@ class ${ClassName} {
     std::unique_ptr<Impl> impl_;
 };
 
-}  // namespace ${Namespace}
+}  // namespace ${Namespace:lower}
 
-#endif  // ${Namespace}_${ClassName}_H_
+#endif  // ${Namespace:upper}_${ClassName:upper}_H_

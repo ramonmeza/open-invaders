@@ -2,9 +2,10 @@
 // Author: Ramon Meza
 
 #include "config/config.h"
+#include "${Namespace:lower}/${ClassName:lower}.h"
 
 // implementation struct
-struct ${Namespace}::${ClassName}::Impl {
+struct ${Namespace:lower}::${ClassName}::Impl {
     Impl() {
     }
 
@@ -16,14 +17,14 @@ struct ${Namespace}::${ClassName}::Impl {
 };
 
 // default constructor
-${Namespace}::${ClassName}::${ClassName}() :
+${Namespace:lower}::${ClassName}::${ClassName}() :
     impl_(std::make_unique<${Namespace}::${ClassName}::Impl>()) {
 }
 
 // delete destructor
-${Namespace}::${ClassName}::~${ClassName}() = default;
+${Namespace:lower}::${ClassName}::~${ClassName}() = default;
 
 // implement pimpl interface methods
-void ${Namespace}::${ClassName}::Init() {
+void ${Namespace:lower}::${ClassName}::Init() {
     impl_->Init();
 }

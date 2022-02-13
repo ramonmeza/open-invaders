@@ -3,4 +3,4 @@
 #define open_invaders_VERSION_MAJOR @open_invaders_VERSION_MAJOR@
 #define open_invaders_VERSION_MINOR @open_invaders_VERSION_MINOR@
 
-#define DATA_DIR "${CMAKE_SOURCE_DIR}/data/"
+#define DATA_DIR "${CMAKE_SOURCE_DIR}/data"

@@ -4,13 +4,13 @@
     "version": "2.0.0",
     "options": {
         "env": {
-            "TEMPLATE_APP": "third_party/template_populator/src/template.py",
-            "PIMPL_HEADER_TEMPLATE": "templates/pimpl_header.template",
-            "PIMPL_SOURCE_TEMPLATE": "templates/pimpl_source.template",
+            "TEMPLATE_APP": "${workspaceFolder}/third_party/template_populator/src/template.py",
+            "PIMPL_HEADER_TEMPLATE": "${workspaceFolder}/templates/pimpl_header.template",
+            "PIMPL_SOURCE_TEMPLATE": "${workspaceFolder}/templates/pimpl_source.template",
             "PIMPL_NAMESPACE_REPLACE": "core",
             "PIMPL_CLASS_NAME_REPLACE": "Player",
-            "TEMPLATE_HEADER_OUTPUT": "include/core/player.h",
-            "TEMPLATE_SOURCE_OUTPUT": "src/core/player.cc"
+            "TEMPLATE_HEADER_OUTPUT": "i${workspaceFolder}/nclude/core/player.h",
+            "TEMPLATE_SOURCE_OUTPUT": "${workspaceFolder}/src/core/player.cc"
         }
     },
     "tasks": [
@@ -34,9 +34,9 @@
             "args": [
                 "$TEMPLATE_APP",
                 "-t", "$PIMPL_HEADER_TEMPLATE",
-                "-r", "${Namespace}:$PIMPL_NAMESPACE_REPLACE",
-                "-r", "${ClassName}:$PIMPL_CLASS_NAME_REPLACE",
-                "-o", "$TEMPLATE_HEADER_OUTPUT"
+                "-r", "Namespace:${input:namespace}",
+                "-r", "ClassName:${input:class_name}",
+                "-o", "${workspaceFolder}/include/${input:namespace}/${input:output}.h"
             ]
         },
         {
@@ -46,9 +46,9 @@
             "args": [
                 "$TEMPLATE_APP",
                 "-t", "$PIMPL_SOURCE_TEMPLATE",
-                "-r", "${Namespace}:$PIMPL_NAMESPACE_REPLACE",
-                "-r", "${ClassName}:$PIMPL_CLASS_NAME_REPLACE",
-                "-o", "$TEMPLATE_SOURCE_OUTPUT"
+                "-r", "Namespace:${input:namespace}",
+                "-r", "ClassName:${input:class_name}",
+                "-o", "${workspaceFolder}/src/${input:namespace}/${input:output}.cc"
             ]
         },
         {
@@ -82,6 +82,23 @@
                 "CMake: Generate build"
             ],
             "command": "/usr/bin/cmake --build ${workspaceFolder}/build --config Debug --target all -j 18"
+        }
+    ],
+    "inputs": [
+        {
+            "id": "namespace",
+            "description": "Namespace: ",
+            "type": "promptString"
+        },
+        {
+            "id": "class_name",
+            "description": "Class Name: ",
+            "type": "promptString"
+        },
+        {
+            "id": "output",
+            "description": "Output filename (no extension): ",
+            "type": "promptString"
         }
     ]
 }

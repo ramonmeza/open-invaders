@@ -45,6 +45,7 @@ set(SOURCE_FILES
   src/main.cc
   src/core/game.cc
   src/core/settings.cc
+  src/core/player.cc
 )
 
 # create the executable
